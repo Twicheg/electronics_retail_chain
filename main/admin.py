@@ -9,6 +9,7 @@ class ChainAdmin(admin.ModelAdmin):
         "id", "title", "email", "country", "city", "product_name", "product_model",
         "exit_date", "provider", "debt", "company", "relationship_level")
     list_filter = ('city',)
+    list_per_page = 20
     actions = ["cancel_the_debt", ]
     change_form_template = "admin/my_change_form.html"
 
