@@ -15,7 +15,7 @@ class ChainCreateSerializer(serializers.ModelSerializer):
         model = ChainLink
         fields = ("id", "title", "email", "country", "city", "street", "house_number", "product_name", "product_model",
                   "exit_date", "provider", "debt", "company")
-        validators = []
+        validators = [serializers.UniqueTogetherValidator(fields=['title'], queryset=ChainLink.objects.all())]
 
 
 class ChainRetrieveSerializer(serializers.ModelSerializer):

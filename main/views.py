@@ -17,8 +17,13 @@ class ChainCreateApi(CreateAPIView):
 
     def perform_create(self, serializer):
         new = serializer.save()
-        new.relationship_level = ChainLink.objects.get(id=new.provider.id).relationship_level + 1
-        new.debt = round(new.debt, 2)
+        if not new.provider:
+            new.relationship_level = 0
+            new.debt = 0.00
+            new.company = "factory"
+        else:
+            new.relationship_level = ChainLink.objects.get(id=new.provider.id).relationship_level + 1
+            new.debt = round(new.debt, 2)
         new.save()
 
 
