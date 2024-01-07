@@ -1,0 +1,13 @@
+{% extends 'admin/change_form.html' %}
+
+{% block submit_buttons_bottom %}
+{% if original.debt %}
+    <div class="submit-row">
+            <input type="submit" value="Удалить задолженность" name="cancel_the_debt">
+            {% if original.provider.id %}
+            <a href="/admin/main/chainlink/{{original.provider.id}}/change/" class="button">Поставщик</a>
+            {% endif %}
+    </div>
+{% endif %}
+    {{ block.super }}
+{% endblock %}
