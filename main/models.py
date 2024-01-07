@@ -21,7 +21,7 @@ class ChainLink(models.Model):
     relationship_level = models.IntegerField(default=0, verbose_name="уровень отношений")
 
     def __str__(self):
-        return f'{self.title},{self.provider},{self.debt}'
+        return f'{self.title},{self.email},{self.debt}'
 
     class Meta:
         verbose_name = "звено сети"

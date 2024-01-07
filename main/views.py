@@ -1,3 +1,4 @@
+from main.permissions import IsActive
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
 from main.models import ChainLink
@@ -10,10 +11,12 @@ class ChainApiView(ListAPIView):
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ["country", "company"]
     ordering_fields = ['creation']
+    permission_classes = [IsActive]
 
 
 class ChainCreateApi(CreateAPIView):
     serializer_class = ChainCreateSerializer
+    permission_classes = [IsActive]
 
     def perform_create(self, serializer):
         new = serializer.save()
@@ -30,12 +33,15 @@ class ChainCreateApi(CreateAPIView):
 class ChainRetrieveApiView(RetrieveAPIView):
     queryset = ChainLink.objects.all()
     serializer_class = ChainRetrieveSerializer
+    permission_classes = [IsActive]
 
 
 class ChainUpdateApiView(UpdateAPIView):
     queryset = ChainLink.objects.all()
     serializer_class = ChainUpdateSerializer
+    permission_classes = [IsActive]
 
 
 class ChainDestroyApiView(DestroyAPIView):
     queryset = ChainLink.objects.all()
+    permission_classes = [IsActive]
